@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
+import "./index.css";
 
 import { WagmiConfig, createConfig } from "wagmi";
 import {
@@ -8,12 +9,16 @@ import {
   ConnectKitButton,
   getDefaultConfig,
 } from "connectkit";
+import { polygonMumbai, sepolia } from "viem/chains";
+
+const chains = [polygonMumbai, sepolia];
 
 const config = createConfig(
   getDefaultConfig({
     // Required API Keys
     alchemyId: import.meta.env.VITE_ALCHEMY_ID, // or infuraId
     walletConnectProjectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_Id || "",
+    chains,
 
     // Required
     appName: "GHO Bridge",
@@ -32,7 +37,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <WagmiConfig config={config}>
       <ConnectKitProvider>
         <App />
-        <ConnectKitButton />
       </ConnectKitProvider>
     </WagmiConfig>
   </React.StrictMode>

@@ -1,10 +1,13 @@
-import { useAccount } from "wagmi";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
 
 function App() {
-  const { address, isConnecting, isDisconnected } = useAccount();
-  if (isConnecting) return <div>Connecting...</div>;
-  if (isDisconnected) return <div>Disconnected</div>;
-  return <div>Connected Wallet: {address}</div>;
+  return (
+    <div className="">
+      <Navbar />
+      <HomePage />
+    </div>
+  );
 }
 
 export default App;
